@@ -1,0 +1,26 @@
+# This is the default config file for user2edd
+
+paths:
+    # erddap: path of the main ERDDAP repository [tomcat]
+    erddap: '/home/jpa029/erddap.localhost/apache-tomcat'
+    # webinf: path to the 'WEB-INF' repository
+    webinf: '/home/jpa029/erddap.localhost/apache-tomcat/webapps/ROOT/WEB-INF'
+    # dataset: path where store file from each dataset
+    dataset:
+        # path where store xml file from BCDC for each dataset
+        xml: '/home/jpa029/erddap.localhost/Dataset/xml'
+    # log: path where store output log file
+    log: '/home/jpa029/Data/USER2ERDDAP/log'
+
+log:
+    # filename: logger filename [default debug.log]
+    filename:
+    # Below, apply only on standard output log
+    # verbose: activate verbose mode [True|False]
+    verbose: False
+    # level: log level [DEBUG, INFO, WARN, ERROR, CRITICAL]
+    level: 'INFO'
+
+extra:
+    # parameters: extra parameters configuration file for user2edd
+    parameters: 'parameters.yaml'

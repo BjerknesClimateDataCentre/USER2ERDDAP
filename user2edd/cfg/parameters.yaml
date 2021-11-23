@@ -1,0 +1,44 @@
+# This is the parameters file for user2edd
+
+# google_users:   # list of group and associated users
+#   <group name>: [
+#      # list of users' member of this group
+#      <user x>, 
+#      <user y>,
+#   ]
+# dataset_ids:  # list of group and associated dataset_ids
+#   <group name>: [ 
+#      # list of dataset_ids only accesible to this groups' members
+#      <dataset_id x>, 
+#      <dataset_id y>,
+#   ] 
+
+google_users:
+   isomet: [ 
+      aina.johannessen@gmail.com, 
+      akfaber@gmail.com, 
+      alena.dekhtyareva@gmail.com, 
+      alexandra.touzeau@gmail.com, 
+      andrew.seidl@uib.no,
+      daniele.zannoni@gmail.com,
+      harald.sodemann@uib.no,
+      derlachendevampir@gmail.com,
+      marvin.kaehnert@gmail.com,
+      mikalanzky@gmail.com,
+      islas.andenes@gmail.com, 
+      ]
+   arios: [
+      aina.johannessen@gmail.com, 
+      akfaber@gmail.com, 
+      alena.dekhtyareva@gmail.com, 
+   ]
+
+dataset_ids:
+   isomet: [
+      'SNOWPACE_704c_9378_5747',
+      'icos11ss20201023',
+      ]
+   arios: [
+      'Arios_9f58_d4e4_c67a',
+      'icos11ss20201023',
+      ] 
