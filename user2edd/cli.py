@@ -13,7 +13,7 @@ from user2edd import api
 def _parse():
     """set up parameter from command line arguments"""
     # define parser
-    parser = argparse.ArgumentParser(prog="icp2edd", description="blabla")
+    parser = argparse.ArgumentParser(prog="user2edd", description="blabla")
 
     # positional arguments
     # parser.add_argument("name", type=str, help="file name")

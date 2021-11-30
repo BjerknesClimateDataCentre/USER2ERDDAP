@@ -102,9 +102,17 @@ def addUserAndGroup(ds_, dict_, out_=None):
     # insert accesible groups
     for dsID, groups in reverse_dict(dict_["dataset_ids"]).items():
         datasettag = root.find(f".//dataset[@datasetID='{dsID}']")
-        if datasettag:
-            grouptag = etree.Element("accessibleTo")
-            grouptag.text = ", ".join(f"{r}" for r in groups)
+        if datasettag is not None:
+            grouptag = datasettag.find("accessibleTo")
+            if grouptag is not None:
+                if grouptag.text == "[anyoneLoggedIn]":
+                    grouptag.text = " "
+                else:
+                    grouptag.text += ", "
+            else:
+                grouptag = etree.Element("accessibleTo")
+
+            grouptag.text += ", ".join(f"{r}" for r in groups)
             datasettag.insert(
                 0, grouptag
             )  # Add grouptag as the first child (index 0) of the dataset element

@@ -45,7 +45,7 @@ handlers:
         subject: USER2ERDDAP System Alert
 
 # loggers:
-#     icp2edd:
+#     user2edd:
 #         handlers: [console_handler, file_handler, alert_handler]
 #         level: NOTSET
 #         propagate: no

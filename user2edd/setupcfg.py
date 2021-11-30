@@ -357,7 +357,7 @@ def _setup_cfg():
     """set up from configuration file(s)
 
     read parameters from
-    ~/.config/icp2edd/config.yaml
+    ~/.config/user2edd/config.yaml
     otherwise from
     /path/to/package/cfg/config_default.yaml
     """
