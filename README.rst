@@ -30,10 +30,12 @@ Run package
 -----------
 
 ## To run 'package' from terminal
-$ user2edd  
+::
+    $ user2edd
 
 ### To get help/usage message
-$ user2edd --help
+::
+    $ user2edd --help
 
 Configuration file
 ------------------
@@ -43,70 +45,96 @@ This file contains configuration parameters
 
 Put your own configuration file in `~/.config/user2edd/config.yaml`
 
-```python
-# This is the default config file for user2edd
+::
+    # This is the default config file for user2edd
+    paths:
+        # erddap: path of the main ERDDAP repository [tomcat]
+        erddap: '/home/jpa029/erddap.localhost/apache-tomcat'
+        # webinf: path to the 'WEB-INF' repository
+        webinf: '/home/jpa029/erddap.localhost/apache-tomcat/webapps/ROOT/WEB-INF'
+        # dataset: path where store file from each dataset
+        dataset:
+            # path where store xml file from BCDC for each dataset
+            xml: '/home/jpa029/erddap.localhost/Dataset/xml'
+        # log: path where store output log file
+        log: '/home/jpa029/Data/USER2ERDDAP/log'
 
-paths:
-    # erddap: path of the main ERDDAP repository [tomcat]
-    erddap: '/home/jpa029/erddap.localhost/apache-tomcat'
-    # webinf: path to the 'WEB-INF' repository
-    webinf: '/home/jpa029/erddap.localhost/apache-tomcat/webapps/ROOT/WEB-INF'
-    # dataset: path where store file from each dataset
-    dataset:
-        # path where store xml file from BCDC for each dataset
-        xml: '/home/jpa029/erddap.localhost/Dataset/xml'
-    # log: path where store output log file
-    log: '/home/jpa029/Data/USER2ERDDAP/log'
+    log:
+        # filename: logger filename [default debug.log]
+        filename:
+        # Below, apply only on standard output log
+        # verbose: activate verbose mode [True|False]
+        verbose: False
+        # level: log level [DEBUG, INFO, WARN, ERROR, CRITICAL]
+        level: 'INFO'
 
-log:
-    # filename: logger filename [default debug.log]
-    filename:
-    # Below, apply only on standard output log
-    # verbose: activate verbose mode [True|False]
-    verbose: False
-    # level: log level [DEBUG, INFO, WARN, ERROR, CRITICAL]
-    level: 'INFO'
+    extra:
+        # parameters: extra parameters configuration file for user2edd
+        parameters: 'parameters.yaml'
 
-extra:
-    # parameters: extra parameters configuration file for user2edd
-    parameters: 'parameters.yaml'
-```
 
 Parameters files
 ----------------
 This file contains parameters to run
-```python
-# This is the parameters file for user2edd
+::python
+    # This is the parameters file for user2edd
 
-# google_users:   # list of group and associated users
-#   <group name>: [
-#      # list of users' member of this group
-#      <user x>, 
-#      <user y>,
-#      ]
-# dataset_ids:  # list of group and associated dataset_ids
-#   <group name>: [ 
-#      # list of dataset_ids only accesible to this groups' members
-#      <dataset_id x>, 
-#      <dataset_id y>,
-#      ] 
+    # google_users:   # list of group and associated users
+    #   <group name>: [
+    #      # list of users' member of this group
+    #      <user x>, 
+    #      <user y>,
+    #      ]
+    # dataset_ids:  # list of group and associated dataset_ids
+    #   <group name>: [ 
+    #      # list of dataset_ids only accesible to this groups' members
+    #      <dataset_id x>, 
+    #      <dataset_id y>,
+    #      ] 
 
-google_users:
-   isomet: [ 
-        user1.name1@something.no,
-        user2.name2@otherthing.uk,
-        ]
+    google_users:
+       isomet: [ 
+            user1.name1@something.no,
+            user2.name2@otherthing.uk,
+            ]
 
-dataset_ids:
-   isomet: [
-        'xxxx',
-        'yyyy',
-        ] 
-```
+    dataset_ids:
+       isomet: [
+            'xxxx',
+            'yyyy',
+            ] 
 
 Tests
 -----
 see [HERE](tests/README.md)
+
+Schedule job
+------------
+::
+    $ crontab -e  
+    
+::bash
+    # crontab -e
+    SHELL=/bin/bash
+    MAILTO=jpa029@uib.no
+    
+    # Example of job definition:
+    # m h dom mon dow   command
+    
+    # * * * * *  command to execute
+    # ┬ ┬ ┬ ┬ ┬
+    # │ │ │ │ │
+    # │ │ │ │ │
+    # │ │ │ │ └───── day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+    # │ │ │ └────────── month (1 - 12)
+    # │ │ └─────────────── day of month (1 - 31)
+    # │ └──────────────────── hour (0 - 23)
+    # └───────────────────────── min (0 - 59)
+    
+    # For details see man 4 crontabs
+    
+    # daily update (at 00:30) of users and datasets' permission on ERDDAP server
+    30 00 * * * user2edd
 
 Features
 --------
