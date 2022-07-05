@@ -30,11 +30,15 @@ Run package
 -----------
 
 ## To run 'package' from terminal
-::
+
+.. code-block:: shell
+
     $ user2edd
 
 ### To get help/usage message
-::
+
+.. code-block:: shell
+
     $ user2edd --help
 
 Configuration file
@@ -45,7 +49,8 @@ This file contains configuration parameters
 
 Put your own configuration file in `~/.config/user2edd/config.yaml`
 
-::
+.. code-block:: shell
+
     # This is the default config file for user2edd
     paths:
         # erddap: path of the main ERDDAP repository [tomcat]
@@ -56,6 +61,8 @@ Put your own configuration file in `~/.config/user2edd/config.yaml`
         dataset:
             # path where store xml file from BCDC for each dataset
             xml: '/home/jpa029/erddap.localhost/Dataset/xml'
+            # exclude subdirectories ex: 'archive, useless'
+            exclude: 'archive'
         # log: path where store output log file
         log: '/home/jpa029/Data/USER2ERDDAP/log'
 
@@ -76,7 +83,9 @@ Put your own configuration file in `~/.config/user2edd/config.yaml`
 Parameters files
 ----------------
 This file contains parameters to run
-::python
+
+.. code-block:: python
+
     # This is the parameters file for user2edd
 
     # google_users:   # list of group and associated users
@@ -110,10 +119,14 @@ see [HERE](tests/README.md)
 
 Schedule job
 ------------
-::
+
+.. code-block:: shell
+
     $ crontab -e  
+
     
-::bash
+.. code-block:: shell
+
     # crontab -e
     SHELL=/bin/bash
     MAILTO=jpa029@uib.no

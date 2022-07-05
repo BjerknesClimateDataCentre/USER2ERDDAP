@@ -4,6 +4,7 @@ module: xml4Erddap.py
 # Stdlib imports
 import logging
 from pathlib import Path
+import re
 import warnings
 
 # Third-party app imports
@@ -30,6 +31,7 @@ def concatenate():
     '.../datasets.xml'
     """
     dsxmlout = setupcfg.datasetXmlPath / "datasets.xml"
+    pattern = f".*({'|'.join(setupcfg.exclude.replace(' ','').split(','))}).*"
     _logger.debug(f"concatenate in {dsxmlout}")
     with dsxmlout.open("w") as fp:
         # add header
@@ -38,8 +40,9 @@ def concatenate():
         fp.write(header.read_text())
         # add single dataset
         for ff in setupcfg.datasetXmlPath.glob("**/dataset.*.xml"):
-            _logger.debug("\t{}".format(ff))
-            fp.write(ff.read_text(encoding="unicode_escape"))
+            if not re.match(pattern, str(ff)):
+                _logger.debug("\t{}".format(ff))
+                fp.write(ff.read_text(encoding="unicode_escape"))
         # add footer
         footer = setupcfg.user2eddPath / "dataset" / "footer.xml"
         _logger.debug("\t{}".format(footer))
@@ -106,7 +109,7 @@ def addUserAndGroup(ds_, dict_, out_=None):
             grouptag = datasettag.find("accessibleTo")
             if grouptag is not None:
                 if grouptag.text == "[anyoneLoggedIn]":
-                    grouptag.text = " "
+                    grouptag.text = ""
                 else:
                     grouptag.text += ", "
             else:
@@ -116,7 +119,7 @@ def addUserAndGroup(ds_, dict_, out_=None):
             datasettag.insert(
                 0, grouptag
             )  # Add grouptag as the first child (index 0) of the dataset element
-            grouptag.tail = "\n  "  # Add linebreak after grouptag
+            grouptag.tail = "\n    "  # Add linebreak after grouptag
         else:
             warnings.warn(f"No dataset with datasetID: {dsID} in {ds_}")
 

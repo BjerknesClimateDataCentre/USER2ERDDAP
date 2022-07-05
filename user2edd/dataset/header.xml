@@ -33,13 +33,13 @@ https://coastwatch.pfel.noaa.gov/erddap/download/setupDatasetsXml.html
 <cacheMinutes></cacheMinutes>                                     <!-- default=60 -->
 <decompressedCacheMaxGB></decompressedCacheMaxGB>                 <!-- default=10 -->
 <decompressedCacheMaxMinutesOld></decompressedCacheMaxMinutesOld> <!-- default=15 -->
-<drawLandMask></drawLandMask>                                     <!-- "over" or "under" (default) -->
+<drawLandMask></drawLandMask>                                     <!-- "over", "under" (default), "outline", or "off" -->
 <emailDiagnosticsToErdData></emailDiagnosticsToErdData>           <!-- "true (default) or "false" -->
 <graphBackgroundColor></graphBackgroundColor>                     <!-- 0xAARRGGBB, default is 0xffccccff -->
 <ipAddressMaxRequests></ipAddressMaxRequests>                     <!-- current default=7 -->
 <ipAddressMaxRequestsActive></ipAddressMaxRequestsActive>         <!-- current default=2 -->
 <ipAddressUnlimited></ipAddressUnlimited>                         <!-- default=(empty) -->
-<loadDatasetsMinMinutes>1</loadDatasetsMinMinutes>                 <!-- usually=default=15 -->
+<loadDatasetsMinMinutes></loadDatasetsMinMinutes>                 <!-- usually=default=15 -->
 <loadDatasetsMaxMinutes></loadDatasetsMaxMinutes>                 <!-- default=60 -->
 <logLevel></logLevel> <!-- "warning" (fewest messages), "info" (default), or "all" (most messages) -->
 <nGridThreads></nGridThreads>                                     <!-- default=1 -->
@@ -69,77 +69,59 @@ ERDDAP follows
 
 <startBodyHtml5><![CDATA[
 <body>
-<table class="compact nowrap"
-       style="width:100%;
-              background-color:#46a9b3;
-              background-image: url('&erddapUrl;/images/icos-header.jpeg');
-              background-repeat: no-repeat;
-              background-size: 100% 150px;"
-       >
-   <tr>
-      <!-- TODO check width between background and logo -->
-      <td style="text-align:center; width:80px;">
-         <a rel="bookmark" href="https://www.bcdc.no/">
-            <img title="Bjerknes Climate Data Centre"
-               src="&erddapUrl;/images/bccr_t25.png" 
-               alt="BCDC"
-               style="vertical-align:middle;">
-         </a>
-      </td>
+<!-- table class="compact nowrap" style="width:100%; background-color:#128CB5;"-->
+  <table class="compact nowrap"
+         style="width:100%;
+                height: 100%;
+                background-image: url('&erddapUrl;/images/bcdc-header.png');
+                background-repeat: no-repeat;
+                background-size: 100% 150px;"
+         >              
+    <tr>                
+       <td style="text-align:center; width:80px;">
+          <a rel="bookmark" href="https://www.bcdc.no/">
+             <img title="Bjerknes Climate Data Center"
+                  src="&erddapUrl;/images/bcdc-logo.png" alt="BCDC"
+                  style="vertical-align:middle;">
+          </a>          
+      </td>             
       <td style="text-align:left; font-size:x-large; color:#FFFFFF; width: 50%;">
-         <strong>ERDDAP</strong>
-         <br><small><small><small>Easier access to scientific data</small></small></small>
-      </td>
+        <strong>ERDDAP</strong>
+        <br><small><small><small>&EasierAccessToScientificData;</small></small></small>
+      </td>             
       <td style="font-size: small; width: 50%; height: 100%;">
          <div style="position: relative; width: 100%; height: 100%;">
             <div id="top" style="position: absolute; top: 0; right: 0; padding: 0.5%; font-weight: bold;">
-               &loginInfo;
-            </div>
+               &loginInfo; | &language;
+            </div>         
             <div id="bot" style="position: absolute; bottom: 0; right: 0; padding: 0.5%;">
-               Brought to you by
-               <a title="Bjerknes Climate Data Centre" rel="bookmark" 
+               <br>&BroughtToYouBy;
+               <a title="Bjerknes Climate Data Centre" rel="bookmark"
                   href="https://www.bcdc.no/">BCDC</a>
-               <a title="Bergen University" rel="bookmark" 
+               <a title="Bergen University" rel="bookmark"
                   href="https://www.uib.no/">UiB</a>
-               <a title="Geofysisk institutt" rel="bookmark" 
+               <a title="Geofysisk Institutt (UiB)" rel="bookmark"
                   href="https://www.uib.no/gfi">GFI</a>
-            </div>
-         </div>
-      </td>
-   </tr>
-</table>
+            </div>         
+         </div>         
+      </td>             
+    </tr>               
+  </table>  
 ]]></startBodyHtml5>
 
 <theShortDescriptionHtml><![CDATA[
 <h1>ERDDAP</h1>
-ERDDAP is a data server that gives you a simple, consistent way to download
-subsets of scientific datasets in common file formats and make graphs and maps.
-This particular ERDDAP installation has oceanographic data
-(for example, data from satellites and buoys).
+&erddapIs;            
+&thisParticularErddap;
 
 <p style="border:3px; border-style:solid; border-color:#FF0000; padding: 1em;">
    By downloading any of these data you are agreeing to the license which requires you to properly attribute the source of the data.<br>
-      We strongly encourage you to keep track of the dataset's digital object identifier (DOI) for this purpose.
+      We strongly encourage you to keep track of the dataset's digital object identifier (DOI) or other identifier for this purpose.
 </p>
 
 [standardShortDescriptionHtml]
 
 ]]></theShortDescriptionHtml>
-
-<!-- You can change other things, but please keep "ERDDAP, Version &erddapVersion;" and
-     these references to the Disclaimers and Privacy Policy. -->
-<endBodyHtml5><![CDATA[
-<div class="standard_width">
-<br>&nbsp;
-<hr>
-ERDDAP, Version &erddapVersion;
-<br><a rel="license" href="&erddapUrl;/legal.html">Disclaimers</a> |
-    <a rel="bookmark" href="&erddapUrl;/legal.html#privacyPolicy">Privacy Policy</a> |
-    <a rel="bookmark" href="&erddapUrl;/legal.html#contact">Contact</a>
-<p>&nbsp;
-</div>
-</body>
-]]></endBodyHtml5>
 
 
 <!-- If you want to refuse requests from certain clients
@@ -156,4 +138,3 @@ ERDDAP, Version &erddapVersion;
 -->
 <subscriptionEmailBlacklist>your.email@yourinstitution.edu, some.name@company.com,
 another.name@company.com, *@example.com</subscriptionEmailBlacklist>
-
