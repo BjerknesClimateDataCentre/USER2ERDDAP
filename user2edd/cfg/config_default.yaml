@@ -9,6 +9,8 @@ paths:
     dataset:
         # path where store xml file from BCDC for each dataset
         xml: '/home/jpa029/erddap.localhost/Dataset/xml'
+        # exclude subdirectories ex: 'archive, useless'
+        exclude: 'archive'
     # log: path where store output log file
     log: '/home/jpa029/Data/USER2ERDDAP/log'
 

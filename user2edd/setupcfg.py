@@ -24,7 +24,7 @@ import user2edd
 
 # --- module's variable ------------------------
 # public
-global erddapPath, erddapWebInfDir, erddapContentDir, datasetXmlPath, user2eddPath, logPath, log_filename, extraParam
+global erddapPath, erddapWebInfDir, erddapContentDir, exclude, datasetXmlPath, user2eddPath, logPath, log_filename, extraParam
 
 # private
 global _cfg_path, _update_log, _logcfg, _warning_handler, _error_handler, _fatal_handler
@@ -102,7 +102,7 @@ def _chk_config_paths(cfg_):
         # check path to ERDDAP, and set up global variables
         #   path where ERDDAP has been previously installed, as well as
         #   path where xml files will be stored
-        global erddapPath, erddapWebInfDir, erddapContentDir, datasetXmlPath
+        global erddapPath, erddapWebInfDir, erddapContentDir, datasetXmlPath, exclude
 
         erddapPath = Path(cfg_["paths"]["erddap"].get(str))
         if not erddapPath.is_dir():
@@ -140,6 +140,9 @@ def _chk_config_paths(cfg_):
                 )
             )
         logging.debug(f"datasetXmlPath: {datasetXmlPath}")
+
+        exclude = cfg_["paths"]["dataset"]["exclude"].get(str)
+        logging.debug(f"exclude: {exclude}")
 
         # # check path to csv files, and set up global variable
         # #   path where csv files will be stored
